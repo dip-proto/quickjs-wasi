@@ -69,7 +69,7 @@ ifdef CONFIG_CLANG
   CFLAGS += -Wno-sign-compare
   CFLAGS += -Wno-missing-field-initializers
   CFLAGS += -Wundef -Wuninitialized
-  CFLAGS += -Wunused -Wno-unused-parameter
+  CFLAGS += -Wno-unused -Wno-unused-parameter
   CFLAGS += -Wwrite-strings
   CFLAGS += -Wchar-subscripts -funsigned-char
   CFLAGS += -MMD -MF $(OBJDIR)/$(@F).d
