@@ -64,7 +64,7 @@ ifdef CONFIG_CLANG
   CROSS_PREFIX=/usr/local/opt/llvm/bin/
   CC=$(CROSS_PREFIX)clang
   CFLAGS=-g -Wall -MMD -MF $(OBJDIR)/$(@F).d
-  CFLAGS += --target=wasm32-wasi --sysroot=/opt/wasi-libc -D__wasi__=1 -msimd128
+  CFLAGS += --target=wasm32-wasi --sysroot=/opt/wasi-libc -D__wasi__=1
   CFLAGS += -Wextra
   CFLAGS += -Wno-sign-compare
   CFLAGS += -Wno-missing-field-initializers
@@ -106,7 +106,7 @@ CFLAGS_DEBUG=$(CFLAGS) -O0
 CFLAGS_SMALL=$(CFLAGS) -Os
 CFLAGS_OPT=$(CFLAGS) -Ofast
 CFLAGS_NOLTO:=$(CFLAGS_OPT)
-LDFLAGS=-g --target=wasm32-wasi --sysroot=/opt/wasi-libc -D__wasi__=1 -msimd128
+LDFLAGS=-g --target=wasm32-wasi --sysroot=/opt/wasi-libc -D__wasi__=1
 ifdef CONFIG_LTO
 CFLAGS_SMALL+=-flto
 CFLAGS_OPT+=-flto
