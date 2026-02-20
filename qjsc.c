@@ -89,15 +89,26 @@ void namelist_add(namelist_t *lp, const char *name, const char *short_name,
         size_t newsize = lp->size + (lp->size >> 1) + 4;
         namelist_entry_t *a =
             realloc(lp->array, sizeof(lp->array[0]) * newsize);
-        /* XXX: check for realloc failure */
+        if (!a) {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(1);
+        }
         lp->array = a;
         lp->size = newsize;
     }
     e =  &lp->array[lp->count++];
     e->name = strdup(name);
-    if (short_name)
+    if (!e->name) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(1);
+    }
+    if (short_name) {
         e->short_name = strdup(short_name);
-    else
+        if (!e->short_name) {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(1);
+        }
+    } else
         e->short_name = NULL;
     e->flags = flags;
 }
