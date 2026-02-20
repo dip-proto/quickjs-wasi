@@ -113,7 +113,8 @@ static inline int is_digit(int c) {
 /* insert 'len' bytes at position 'pos' */
 static void dbuf_insert(DynBuf *s, int pos, int len)
 {
-    dbuf_realloc(s, s->size + len);
+    if (dbuf_realloc(s, s->size + len) < 0)
+        return;
     memmove(s->buf + pos + len, s->buf + pos, s->size - pos);
     s->size += len;
 }
