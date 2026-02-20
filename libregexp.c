@@ -110,7 +110,7 @@ static inline int is_digit(int c) {
     return c >= '0' && c <= '9';
 }
 
-/* insert 'len' bytes at position 'pos' */
+/* insert 'len' bytes at position 'pos'. On error, the error flag is set in the DynBuf. */
 static void dbuf_insert(DynBuf *s, int pos, int len)
 {
     if (dbuf_realloc(s, s->size + len) < 0)
